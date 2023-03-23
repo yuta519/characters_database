@@ -10,15 +10,12 @@ import { FetchPokemons } from "../api/PokemonApi";
 const Works = () => {
   const [state, update] = useState({});
   const params = useParams();
-  console.log(params);
 
   useEffect(() => {
     (async () => {
       update(await FetchPokemons());
     })();
   }, []);
-
-  console.log(state);
 
   return (
     <>

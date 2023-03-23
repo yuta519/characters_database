@@ -10,12 +10,17 @@ const client: AxiosInstance = axios.create({
 });
 
 export const FetchPokemons = async (
-  path: string = "pokemon?limit=100"
+  page: number = 1,
+  limit: number = 100
 ): Promise<FetchPokemonListResponse> => {
   try {
+    const offset = (page - 1) * 100;
+    const path = offset
+      ? `pokemon?offset=${offset}&limit=${limit}`
+      : `pokemon?limit=${limit}`;
     const response = await GetApi(client, path);
-    console.log(response);
     return {
+      page,
       count: response.count,
       pokemons: response.results.map((pokemon: any) => {
         return {
@@ -58,8 +63,9 @@ export const FetchPokemonById = async (id: string): Promise<Pokemon> => {
         speed: response.stats.find((item: any) => item.stat.name === "speed")
           .base_stat,
       },
+      types: response.types.map((item: any) => item.type.name),
+      moves: response.moves.map((item: any) => item.move.name),
     };
-    console.log(pokemon.pokemonStat);
     console.log(pokemon);
     return pokemon;
   } catch (error) {

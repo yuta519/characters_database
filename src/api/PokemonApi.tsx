@@ -41,7 +41,12 @@ export const FetchPokemonById = async (id: string): Promise<Pokemon> => {
 
   try {
     const response: any = await GetApi(client, `pokemon/${id}`);
-    const pokemon = {
+    const responseSpecie: any = await GetApi(client, `pokemon-species/${id}`);
+    const pokemonTexts = responseSpecie.flavor_text_entries.filter(
+      (entry: any) => entry.language.name === "en"
+    );
+
+    return {
       id: response.id,
       name: response.name,
       baseExperience: response.base_experience,
@@ -66,9 +71,14 @@ export const FetchPokemonById = async (id: string): Promise<Pokemon> => {
       },
       types: response.types.map((item: any) => item.type.name),
       moves: response.moves.map((item: any) => item.move.name),
+      pokemonTexts: pokemonTexts.map((item: any) => {
+        return {
+          version: item.version.name,
+          language: item.language.name,
+          text: item.flavor_text,
+        };
+      }),
     };
-    console.log(pokemon);
-    return pokemon;
   } catch (error) {
     throw error;
   }

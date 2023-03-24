@@ -7,6 +7,7 @@ interface PokemonInfo {
 export interface FetchPokemonListResponse {
   page: number;
   count: number;
+  limit: number;
   pokemons: PokemonInfo[];
 }
 
@@ -19,6 +20,12 @@ export interface PokemonStat {
   speed: number;
 }
 
+export interface PokemonText {
+  version: string;
+  language: string;
+  text: string;
+}
+
 export interface Pokemon {
   id: string;
   name: string;
@@ -28,4 +35,5 @@ export interface Pokemon {
   pokemonStat: PokemonStat;
   types: string[];
   moves: string[];
+  pokemonTexts: PokemonText[];
 }

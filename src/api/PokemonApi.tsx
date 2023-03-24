@@ -11,16 +11,17 @@ const client: AxiosInstance = axios.create({
 
 export const FetchPokemons = async (
   page: number = 1,
-  limit: number = 100
+  limit: number = 90
 ): Promise<FetchPokemonListResponse> => {
   try {
-    const offset = (page - 1) * 100;
+    const offset = (page - 1) * limit;
     const path = offset
       ? `pokemon?offset=${offset}&limit=${limit}`
       : `pokemon?limit=${limit}`;
     const response = await GetApi(client, path);
     return {
       page,
+      limit,
       count: response.count,
       pokemons: response.results.map((pokemon: any) => {
         return {

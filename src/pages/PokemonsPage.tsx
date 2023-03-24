@@ -18,21 +18,15 @@ import { FetchPokemonListResponse } from "../types/PokemonTypes";
 const Pokemons = () => {
   const [state, update] = useState<FetchPokemonListResponse>({
     page: 1,
+    limit: 90,
     count: 0,
     pokemons: [],
   });
-
-  console.log(state);
 
   const handleChangePage = async (
     event: React.MouseEvent<HTMLElement, MouseEvent>
   ) => {
     const target = event.target as HTMLElement;
-
-    update((prev) => ({
-      ...prev,
-      page: Number(target.innerText),
-    }));
     update(await FetchPokemons(Number(target.innerText)));
   };
 
@@ -44,13 +38,15 @@ const Pokemons = () => {
 
   return (
     <>
-      <h1>POKéMON</h1>
-      <h2>{state.count}</h2>
+      <StyledContainer>
+        <h1>POKéMON</h1>
+        <h2>{state.count}</h2>
+      </StyledContainer>
       <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2} columns={{ xs: 3, sm: 6, md: 12 }}>
+        <Grid container spacing={2} columns={{ xs: 1, sm: 3, md: 12 }}>
           {state.pokemons.map((pokemonInfo) => {
             return (
-              <Grid key={pokemonInfo.id}>
+              <Grid key={pokemonInfo.id} xs={1} sm={1} md={2}>
                 <Card sx={{ minWidth: 275 }}>
                   <CardActionArea>
                     <Link
@@ -60,7 +56,7 @@ const Pokemons = () => {
                     >
                       <CardContent>
                         <CardMedia
-                          sx={{ height: 200 }}
+                          sx={{ height: 300 }}
                           image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonInfo.id}.png`}
                           title={pokemonInfo.name}
                         />
@@ -80,13 +76,17 @@ const Pokemons = () => {
         </Grid>
       </Box>
       <StyledPagination
-        count={Math.ceil(state.count / 100)}
+        count={Math.ceil(state.count / state.limit)}
         defaultPage={state.page}
         onClick={(event) => handleChangePage(event)}
       />
     </>
   );
 };
+
+const StyledContainer = styled.div`
+  text-align: center;
+`;
 
 const StyledPagination = styled(Pagination)`
   margin: 30px;

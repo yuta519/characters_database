@@ -58,29 +58,31 @@ const PokemonDetail = () => {
     <>
       <h1>{pokemon.name}</h1>
       <Grid container spacing={2} columns={{ xs: 3, sm: 6, md: 12 }}>
-        <Grid key={pokemon.id} xs={6}>
+        <Grid
+          key={pokemon.id}
+          sx={{ display: "flex" }}
+          xs={6}
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+        >
           {pokemon.id ? (
-            <img
-              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
-              width="300"
-              height="300"
-              alt={pokemon.name}
-            />
+            <div>
+              <img
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+                width="300"
+                height="300"
+                alt={pokemon.name}
+              />
+            </div>
           ) : null}
-          <TableContainer component={Paper}>
+          {/* <TableContainer component={Paper}>
             <Table
               sx={{ minWidth: 150 }}
               size="medium"
               aria-label="a dense table"
             ></Table>
-          </TableContainer>
-          <Stack spacing={1} alignItems="center">
-            <Stack direction="row" spacing={1}>
-              {pokemon.types.map((type) => (
-                <Chip label={type} color="info" variant="outlined" />
-              ))}
-            </Stack>
-          </Stack>
+          </TableContainer> */}
         </Grid>
         <Grid xs={6}>
           <ResponsiveContainer width="100%" height="100%">
@@ -154,11 +156,27 @@ const PokemonDetail = () => {
                 <TableBody>
                   <TableRow>
                     <TableCell>Height</TableCell>
-                    <TableCell>{pokemon.height * 10} cm</TableCell>
+                    <TableCell align="center">
+                      {pokemon.height * 10} cm
+                    </TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>Weight</TableCell>
-                    <TableCell>{pokemon.weight * 0.1} kg</TableCell>
+                    <TableCell align="center">
+                      {pokemon.weight * 0.1} kg
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>Abilities</TableCell>
+                    <TableCell>
+                      <Stack spacing={1} alignItems="center">
+                        <Stack direction="row" spacing={1}>
+                          {pokemon.types.map((type) => (
+                            <Chip label={type} color="success" />
+                          ))}
+                        </Stack>
+                      </Stack>
+                    </TableCell>
                   </TableRow>
                 </TableBody>
               </Table>

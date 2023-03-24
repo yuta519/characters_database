@@ -12,7 +12,7 @@ import Link from "@mui/material/Link";
 const Works = () => {
   return (
     <>
-      <h1>Quizes</h1>
+      <h1>Anime & Movie Works</h1>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid xs={3}>
@@ -24,26 +24,34 @@ const Works = () => {
                       pokemon
                     </Typography>
                     <CardMedia
-                      sx={{ height: 300 }}
-                      image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png`}
+                      sx={{ height: 200 }}
+                      // image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png`}
+                      image={`https://zukan.pokemon.co.jp/img/ball.svg`}
                     />
                   </CardContent>
                 </Link>
               </CardActionArea>
             </Card>
           </Grid>
-          <Grid xs={3}>xs=4</Grid>
-          <Grid xs={3}>xs=4</Grid>
-          <Grid xs={3}>xs=4</Grid>
-          <Grid xs={3}>xs=4</Grid>
-          <Grid xs={3}>xs=4</Grid>
-          <Grid xs={3}>xs=8</Grid>
-          <Grid xs={3}>xs=8</Grid>
-          <Grid xs={3}>xs=8</Grid>
+          <Grid xs={3}>
+            <Card sx={{ minWidth: 275 }}>
+              <CardActionArea>
+                <Link href="/" color="inherit" underline="none">
+                  <CardContent>
+                    <Typography variant="h5" component="div">
+                      STAR WARS (preparing...)
+                    </Typography>
+                    <CardMedia
+                      sx={{ height: 200 }}
+                      image={`https://upload.wikimedia.org/wikipedia/commons/6/6c/Star_Wars_Logo.svg`}
+                    />
+                  </CardContent>
+                </Link>
+              </CardActionArea>
+            </Card>
+          </Grid>
         </Grid>
       </Box>
-      {/* <Button variant="contained">Contained</Button>
-      <Button variant="outlined">Outlined</Button> */}
     </>
   );
 };

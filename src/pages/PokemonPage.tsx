@@ -42,6 +42,7 @@ const PokemonDetail = () => {
     },
     types: [],
     moves: [],
+    pokemonTexts: [],
   });
 
   useEffect(() => {
@@ -76,13 +77,6 @@ const PokemonDetail = () => {
               />
             </div>
           ) : null}
-          {/* <TableContainer component={Paper}>
-            <Table
-              sx={{ minWidth: 150 }}
-              size="medium"
-              aria-label="a dense table"
-            ></Table>
-          </TableContainer> */}
         </Grid>
         <Grid xs={6}>
           <ResponsiveContainer width="100%" height="100%">
@@ -133,6 +127,11 @@ const PokemonDetail = () => {
               />
             </RadarChart>
           </ResponsiveContainer>
+        </Grid>
+        <Grid xs={12}>
+          <Typography>
+            {`${pokemon.pokemonTexts[0]?.text} (From version of ${pokemon.pokemonTexts[0]?.version})`}
+          </Typography>
         </Grid>
         <Grid xs={6}>
           <Paper sx={{ width: "100%", mb: 2 }}>

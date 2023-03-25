@@ -34,8 +34,8 @@
 - Search name by text
   - You can easiy find the pokemon that you want to know details.
 
-### Demo Moview
-![Image](./docs/demo.mp4) 
+<!-- ### Demo Movie
+![Image](./docs/demo.gif)  -->
 
 
 ## How to setup
